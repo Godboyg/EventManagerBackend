@@ -18,7 +18,7 @@ app.get("/",(req,res)=>{
     res.send("hello");
 })
 
-app.post("/createUser",async(req,res)=>{
+app.post("/api/createUser",async(req,res)=>{
     try {
         const { name, email , password } = req.body;
         console.log(name,email,password);
@@ -49,7 +49,7 @@ app.post("/createUser",async(req,res)=>{
 
 })
 
-app.post("/loginUser",async(req,res)=>{
+app.post("/api/loginUser",async(req,res)=>{
     const { email , password } = req.body;
 
     const user = await userModel.findOne({ email });
@@ -73,7 +73,7 @@ app.post("/loginUser",async(req,res)=>{
 
 })
 
-app.post("/createEvent", async(req,res)=>{
+app.post("/api/createEvent", async(req,res)=>{
 
     const { eventName , description , date , token} = req.body;
 
@@ -93,7 +93,7 @@ app.post("/createEvent", async(req,res)=>{
 
 })
 
-app.get("/events",async(req,res)=>{
+app.get("/api/events",async(req,res)=>{
 
     const event = await eventModel.find();
     
@@ -105,7 +105,7 @@ app.get("/events",async(req,res)=>{
 
 })
 
-app.post("/myEvents",async(req,res)=>{
+app.post("/api/myEvents",async(req,res)=>{
 
     const { token } = req.body;
 
@@ -122,7 +122,7 @@ app.post("/myEvents",async(req,res)=>{
 
 })
 
-app.post("/searchEvent",async(req,res)=>{
+app.post("/api/searchEvent",async(req,res)=>{
 
     const { query } = req.body;
 
@@ -137,7 +137,7 @@ app.post("/searchEvent",async(req,res)=>{
     res.send(events);
 })
 
-app.post("/verifyToken",async(req,res)=>{
+app.post("/api/verifyToken",async(req,res)=>{
 
     const { data } = req.body;
 
@@ -147,7 +147,7 @@ app.post("/verifyToken",async(req,res)=>{
     res.json({ message:"token found",decode});
 })
 
-app.delete("/myEvents/:id",async(req,res)=>{
+app.delete("/api/myEvents/:id",async(req,res)=>{
 
     const del = await eventModel.findByIdAndDelete(req.params.id);
 
@@ -155,7 +155,7 @@ app.delete("/myEvents/:id",async(req,res)=>{
 
 })
 
-app.post("/dashboard/events/join/:id",async(req,res)=>{
+app.post("/api/dashboard/events/join/:id",async(req,res)=>{
 
     const { token } = req.body;
 
@@ -177,7 +177,7 @@ app.post("/dashboard/events/join/:id",async(req,res)=>{
     res.json({ message : "user pushed",ev});
 })
 
-app.post("/dashboard/events/leave/:id",async(req,res)=>{
+app.post("/api/dashboard/events/leave/:id",async(req,res)=>{
 
     const { id } = req.body;
 
