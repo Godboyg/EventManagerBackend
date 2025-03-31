@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const bcrypt = require('bcryptjs');
 const alert = require('@mui/material');
+const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 app.use(cors());
