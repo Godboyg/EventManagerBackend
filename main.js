@@ -51,6 +51,7 @@ app.post("/createUser",async(req,res)=>{
 })
 
 app.post("/loginUser",async(req,res)=>{
+    try{
     const { email , password } = req.body;
 
     const user = await userModel.findOne({ email });
@@ -71,7 +72,10 @@ app.post("/loginUser",async(req,res)=>{
     console.log(token);
 
     res.status(201).json({ message : "user logged in" , token});
-
+    }    
+    catch{
+        res.status(500).json({ error: error.message });
+    }
 })
 
 app.post("/createEvent", async(req,res)=>{
