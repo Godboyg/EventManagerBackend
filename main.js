@@ -144,12 +144,16 @@ app.post("/searchEvent",async(req,res)=>{
 
 app.post("/verifyToken",async(req,res)=>{
 
-    const { data } = req.body;
+    try{
+        const { data } = req.body;
 
-    const decode = jwt.verify(data, process.env.Secret);
-    req.user = decode;
+        const decode = jwt.verify(data, process.env.Secret);
+        req.user = decode;
 
-    res.json({ message:"token found",decode});
+        res.json({ message:"token found",decode});
+    }catch{
+        return res.json({ message:"token expired"});
+    }
 })
 
 app.delete("/myEvents/:id",async(req,res)=>{
