@@ -152,7 +152,7 @@ app.post("/verifyToken",async(req,res)=>{
 
         res.json({ message:"token found",decode});
     }catch{
-        return res.json({ message:"token expired"});
+        res.json({ message:"token expired"});
     }
 })
 
