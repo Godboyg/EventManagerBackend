@@ -152,9 +152,6 @@ app.post("/verifyToken",async(req,res)=>{
 
         return res.json({ message:"token found",decode});
     }catch(error){
-        if (error.name === 'TokenExpiredError') {
-            return res.status(401).json({ expired: true, message: 'Token has expired'});
-        }
         return res.status(401).json({ valid: false, message: 'Invalid token' });
     }
 })
