@@ -149,7 +149,6 @@ app.post("/verifyToken",async(req,res)=>{
 
         const decode = jwt.verify(data, process.env.Secret);
         req.user = decode;
-        console.log("loggedin user",decode);
 
         return res.json({ message:"token found",decode});
     }catch(error){
