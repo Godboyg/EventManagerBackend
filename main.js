@@ -38,7 +38,7 @@ app.post("/createUser",async(req,res)=>{
 
           await user.save();
 
-          const token = jwt.sign({ _id: user._id , email : user.email },process.env.Secret , { expiresIn: "1d" });
+          const token = jwt.sign({ _id: user._id , email : user.email },process.env.Secret , { expiresIn: '5d' });
           res.status(201).json({user,token});
       }
       else{
@@ -67,7 +67,7 @@ app.post("/loginUser",async(req,res)=>{
         return alert("Wrong Passsword");
     }
 
-    const token = jwt.sign({ _id: user._id , email : user.email },process.env.Secret , { expiresIn: "1d" });
+    const token = jwt.sign({ _id: user._id , email : user.email },process.env.Secret , { expiresIn: '5d' });
 
     console.log(token);
 
